@@ -20,6 +20,10 @@ int printIdentifiers(char next, va_list arg)
 		{"i", print_int},
 		{"d", print_int},
 		{"b", print_binary},
+		{"u", unsigned_integer},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_HEX},
 		{NULL, NULL}
 	};
 
