@@ -74,46 +74,66 @@ int print_int(va_list arg)
 
 
 /**
- *print_S - handles custom conversion S which for instance
- *         -prints '\n' as \x and hex equivalent of n
- *@list:list to increment
- *Return:no. of characters printed
+ * print_STR - prints a string with a `S` (upper case) specificer
+ * @arg: argument
+ * Return: number of character printed
  */
 
-int print_S(va_list list)
+int print_STR(va_list arg)
 {
-	char *hex;
-	char *s = va_arg(list, char *);
-	unsigned int i = 0, j;
-	int c = 0, len;
+int i;
+char *str = va_arg(arg, char*);
 
-	if (s == NULL)
-		s = "(null)";
-	for (i = 0; s[i]; i++)
+if (str == NULL)
+	str = "(null)";
+else if (*str == '\0')
+	return (-1);
+
+for (i = 0; str[i]; i++)
+{
+	if ((str[i] < 32 && str[i] > 0) || str[i] >= 127)
 	{
-		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
-		{
-			_putchar('\\');
-			_putchar('x');
-			len = base_len(s[i], 16);
-			if (len != 2)
-			{
-				_putchar('0');
-				c++;
-			}
-			c += 2;
-			hex = hex_conv(s[i]);
-			for (j = 0; hex[j]; j++)
-			{
-				_putchar(hex[j]);
-				c++;
-			}
-		}
-		else
-		{
-			_putchar(s[i]);
-			c++;
-		}
+		_putchar('\\');
+		_putchar('x');
+		if (i < 16)
+			_putchar('0');
+
+		print_unsignedIntToHex(str[i], 'A');
 	}
-	return (c);
+	else
+		_putchar(str[i]);
+}
+
+return (i);
+}
+
+/**
+ * print_unsignedIntToHex - prints unsigned int to hexadecimal.
+ * @num: number to print
+ * @_case: letter `a` on the case to print it (upper or lower)
+ * Return: number or char printed
+ */
+int print_unsignedIntToHex(unsigned int num, char _case)
+{
+	unsigned int num2;
+	int i, j, remainder, nbrCharacters = 0;
+	char *numhex;
+
+	for (num2 = num; num2 != 0; nbrCharacters++, num2 /= 16)
+	;
+
+	numhex = malloc(nbrCharacters);
+	for (i = 0; num != 0; i++)
+	{
+		remainder = num % 16;
+		if (remainder < 10)
+			numhex[i] = remainder + '0';
+		else
+			numhex[i] = remainder - 10 + _case;
+		num = num / 16;
+	}
+	for (j = i - 1; j >= 0; j--)
+		_putchar(numhex[j]);
+	free(numhex);
+	return (nbrCharacters);
 }

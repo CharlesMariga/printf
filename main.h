@@ -13,7 +13,8 @@ int unsigned_integer(va_list list);
 int print_octal(va_list list);
 int print_hex(va_list list);
 int print_HEX(va_list list);
-int print_S(va_list list);
+int print_STR(va_list arg);
+int print_unsignedIntToHex(unsigned int num, char _case);
 
 /**
  * struct formatstruct - structure definition of a printTypeStruct
