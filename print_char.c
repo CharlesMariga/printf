@@ -13,5 +13,7 @@
 int print_char(va_list character)
 {
 	char ch = va_arg(character, int);
-	return (_putchar(ch));
+	int count = _putchar(ch);
+
+	return (count);
 }

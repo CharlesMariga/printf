@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 	int num = 0;
 	va_list args;
 
-	structFormat operations[] = {
+	structformat_t operations[] = {
 		{"c", print_char},
 		{"s", print_string},
 		{NULL, NULL}

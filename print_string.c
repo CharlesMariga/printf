@@ -12,7 +12,7 @@
  */
 int print_string(va_list string)
 {
-	int len = 0;
+	int i = 0, count = 0;
 	char *str;
 
 	str = va_arg(string, char *);
@@ -20,11 +20,11 @@ int print_string(va_list string)
 	if (str == NULL)
 		str = "";
 
-	while (*(str + len))
+	while (str[i] != '\0')
 	{
-		len += _putchar(str[len]);
-		len++;
+		count += _putchar((char)str[i]);
+		i++;
 	}
-	return (len);
+	return (count);
 }
 

@@ -3,7 +3,7 @@
 #include <stddef.h>
 
 /**
- * print_operation - prints according to format
+ * print_operations - prints according to format
  * @format: format of data to be prented
  * @opsArr: a map of formats and their functions
  * @args: _printf arguments
@@ -12,7 +12,8 @@
  *
  * Return: number of characters printed
  */
-int print_operations(const char *format, structFormat *opsArr, va_list args)
+int print_operations(const char *format, struct structformat *opsArr,
+va_list args)
 {
 	int i = 0, j = 0, count = 0;
 
