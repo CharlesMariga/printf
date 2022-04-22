@@ -7,6 +7,7 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 int print_char(va_list character);
 int print_str(va_list string);
+int print_int(va_list arg);
 
 /**
  * struct formatstruct - structure definition of a printTypeStruct
