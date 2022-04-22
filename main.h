@@ -13,8 +13,7 @@ int unsigned_integer(va_list list);
 int print_octal(va_list list);
 int print_hex(va_list list);
 int print_HEX(va_list list);
-int print_STR(va_list arg);
-int print_unsignedIntToHex(unsigned int num, char _case);
+int print_S(va_list list);
 
 /**
  * struct formatstruct - structure definition of a printTypeStruct
@@ -33,5 +32,6 @@ char *rev_string(char *s);
 void write_base(char *str);
 char *_memcpy(char *dest, char *src, unsigned int n);
 int print_unsigned_number(unsigned int n);
+char *hex_conv(int num);
 
 #endif

@@ -72,35 +72,48 @@ int print_int(va_list arg)
 	return (charPrinted);
 }
 
+
 /**
- * print_STR - prints a string with a `S` (upper case) specificer
- * @arg: argument
- * Return: number of character printed
+ *print_S - handles custom conversion S which for instance
+ *         -prints '\n' as \x and hex equivalent of n
+ *@list:list to increment
+ *Return:no. of characters printed
  */
-int print_STR(va_list arg)
+
+int print_S(va_list list)
 {
-	int i;
-	char *str = va_arg(arg, char*);
+	char *hex;
+	char *s = va_arg(list, char *);
+	unsigned int i = 0, j;
+	int c = 0, len;
 
-	if (str == NULL)
-		str = "(null)";
-	else if (*str == '\0')
-		return (-1);
-
-	for (i = 0; str[i]; i++)
+	if (s == NULL)
+		s = "(null)";
+	for (i = 0; s[i]; i++)
 	{
-		if ((str[i] < 32 && str[i] > 0) || str[i] >= 127)
+		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
 		{
 			_putchar('\\');
 			_putchar('x');
-			if (i < 16)
+			len = base_len(s[i], 16);
+			if (len != 2)
+			{
 				_putchar('0');
-
-			print_unsignedIntToHex(str[i], 'A');
+				c++;
+			}
+			c += 2;
+			hex = hex_conv(s[i]);
+			for (j = 0; hex[j]; j++)
+			{
+				_putchar(hex[j]);
+				c++;
+			}
 		}
 		else
-			_putchar(str[i]);
+		{
+			_putchar(s[i]);
+			c++;
+		}
 	}
-
-	return (i);
+	return (c);
 }
